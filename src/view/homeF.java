@@ -112,17 +112,17 @@ public class homeF extends javax.swing.JFrame {
         jLabel2.setText("HTT CAFFE");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, -1));
 
-        jLabel3_time.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        jLabel3_time.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3_time.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3_time.setText("pm");
         jPanel1.add(jLabel3_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 50, -1));
 
-        jLabel3_time1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        jLabel3_time1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3_time1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3_time1.setText("00:00:00");
         jPanel1.add(jLabel3_time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 80, -1));
 
-        jLabel3_time2.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        jLabel3_time2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3_time2.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3_time2.setText("mon, 12-09-2004");
         jPanel1.add(jLabel3_time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 180, -1));

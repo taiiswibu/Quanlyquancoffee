@@ -128,7 +128,7 @@ public class CartF extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cart ID", "Product ID", "Product Name", "Quantily", "Price", "Total"
+                "Cart ID", "Product ID", "Product Name", "Quantily", "Price", "Total", "Note"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

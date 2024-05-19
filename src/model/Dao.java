@@ -4,6 +4,7 @@
  */
 package model;
 
+import Controller.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -98,16 +99,15 @@ public class Dao {
         int row = 0;
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT MAX(cid) FROM cart");//Kết quả của truy vấn được lưu trong đối tượng rs (là một đối tượng của lớp ResultSet). Trong vòng lặp while, chúng ta lấy giá trị tối đa của cột id và gán cho biến row.
-            while (rs.next()) {//rs.next(): Phương thức này di chuyển con trỏ đến hàng tiếp theo trong
-                row = rs.getInt(1);//Trong vòng lặp, chúng ta sử dụng rs.getInt(1) để lấy giá trị của cột đầu tiên (cột id). Giá trị này được gán cho biến row.
+            rs = st.executeQuery("SELECT COALESCE(MAX(cid), 0) FROM cart");
+            if (rs.next()) {
+                int maxCid = rs.getInt(1);
+                row = maxCid + 1;
             }
-
-            //SQLException ex: Đây là đối tượng của lớp SQLException, chứa thông tin về lỗi xảy ra.
-        } catch (Exception ex) {//Trong đoạn mã trên, chúng ta sử dụng khối catch để xử lý ngoại lệ (exception) trong trường hợp có lỗi xảy ra khi thực hiện truy vấn SQL. Cụ thể:
-            Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);// Dòng này ghi log lỗi (error log) bằng cách sử dụng Logger. Nó sẽ hiển thị thông báo lỗi và stack trace (danh sách các phương thức đã gọi) trong console hoặc file log.
+        } catch (Exception ex) {
+            Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return row + 1;
+        return row;
     }
 
     public boolean isProductExist(int cid, int pid) {
@@ -126,7 +126,7 @@ public class Dao {
     }
 
     public boolean insertCart(Cart cart) {
-        String sql = "insert into cart (cid, pid, pName, qty, price,total) values(?,?,?,?,?,?)";
+        String sql = "insert into cart (cid, pid, pName, qty, price,total,note) values(?,?,?,?,?,?,?)";
 
         try {
             ps = con.prepareStatement(sql);
@@ -136,6 +136,7 @@ public class Dao {
             ps.setInt(4, cart.getQty());
             ps.setDouble(5, cart.getPrice());
             ps.setDouble(6, cart.getTotal());
+            ps.setString(7, cart.getpNote());
             return ps.executeUpdate() > 0;
 
         } catch (Exception e) {
@@ -303,8 +304,6 @@ public class Dao {
         }
         return total;
     }
-    
-
 
     public double todayRevenue(String date) {
         double total = 0.0;
@@ -320,9 +319,8 @@ public class Dao {
         }
         return total;
     }
-    
-    
-      public double totalRevenue() {
+
+    public double totalRevenue() {
         double total = 0.0;
         try {
             con = MyConnection.getConnection(); // Khởi tạo kết nối

@@ -12,9 +12,20 @@ public class Cart {
     private  int id;
     private  int pid;
     private  String pName;
+    private  String pNote;
     private  int qty;
     private  double price;
     private  double total;
+
+    public Cart(int id, int pid, String pName, String pNote, int qty, double price, double total) {
+        this.id = id;
+        this.pid = pid;
+        this.pName = pName;
+        this.pNote = pNote;
+        this.qty = qty;
+        this.price = price;
+        this.total = total;
+    }
 
     public int getId() {
         return id;
@@ -38,6 +49,14 @@ public class Cart {
 
     public void setpName(String pName) {
         this.pName = pName;
+    }
+
+    public String getpNote() {
+        return pNote;
+    }
+
+    public void setpNote(String pNote) {
+        this.pNote = pNote;
     }
 
     public int getQty() {
@@ -64,5 +83,5 @@ public class Cart {
         this.total = total;
     }
     
-    
+
 }

@@ -5,6 +5,7 @@
 package model;
 //import com.sun.jdi.connect.spi.Connection;
 
+import Controller.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
